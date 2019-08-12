@@ -180,13 +180,81 @@ NAT：NAT模式就是虚拟机要联网得先通过宿主机才能和外面进�
 
 点击USER CREATION 创建管理员用户
 
+![1565604689375](assets/1565604689375.png)
+
 输入用户名密码后点击Done
 
 ![1565604313633](assets/1565604313633.png)
 
 等待系统安装完毕重启系统即可
 
+![1565604721506](assets/1565604721506.png)
 
+
+
+查看ip
+
+![1565604919127](assets/1565604919127.png)
+
+就可以用xshell连接了
 
 ## 三.桥接模式网络配置
+
+**1、配置ip地址等信息在/etc/sysconfig/network-scripts/ifcfg-ens33文件里做如下配置：**
+
+ 命令：
+
+```
+vi   /etc/sysconfig/network-scripts/ifcfg-ens33
+```
+
+默认如下：
+
+```
+YPE=Ethernet
+PROXY_METHOD=none
+BROWSER_ONLY=no
+BOOTPROTO=dhcp
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_FAILURE_FATAL=no
+IPV6_ADDR_GEN_MODE=stable-privacy
+NAME=ens33
+UUID=192ffc19-4a0e-4439-92cd-6e63a0e53a1a
+DEVICE=ens33
+ONBOOT=no
+```
+
+**2、配置网络工作**
+
+在/etc/sysconfig/network文件里增加如下配置
+
+```
+命令： vi /etc/sysconfig/network  
+修改： NETWORKING=yes # 网络是否工作，此处一定不能为no
+```
+
+3、**配置公共DNS服务(可选)**
+
+在/etc/resolv.conf文件里增加如下配置
+
+```
+nameserver 8.8.8.8
+```
+
+4、**关闭防火墙**
+
+```
+systemctl stop firewalld # 临时关闭防火墙
+systemctl disable firewalld # 禁止开机启动
+```
+
+5、**重启网络服务**
+
+```
+service network restart
+```
 
