@@ -98,3 +98,69 @@ chkconfig jenkins on
 选择“Install suggested plugins”安装默认的插件，下面Jenkins就会自己去下载相关的插件进行安装。
 
 创建超级管理员账号 
+
+### 4.git配置
+
+源码安装
+检测当前git版本是否是2.7.4以上
+
+```
+git --version
+```
+
+如果没有安装git直接源码安装即可，如果安装了先删除原来的git。
+
+```
+yum -y remove git
+```
+
+
+先安装编译git需要的包。
+
+```
+yum install zlib-devel perl-CPAN gettext curl-devel expat-devel gettext-devel openssl-devel
+```
+
+
+下载&安装
+
+下载&安装
+
+```
+mkdir /data/git && cd /data/git
+curl --progress https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.9.5.tar.gz | tar xz
+cd git-2.9.5
+./configure
+make
+make prefix=/usr/local install
+```
+
+
+查看git安装到什么地方
+
+```
+which git
+```
+
+可以看到git安装在如下目录
+
+```
+/usr/local/bin/git
+```
+
+配置
+在Jenkins->Global Tool Configuration下配置git。
+
+Path to Git executable：填写git的安装路径
+
+### 5.java配置
+
+在服务器上执行echo $JAVA_HOME便可看到java home。 
+
+
+
+### 6.maven配置
+
+#### 安装
+
+下载
