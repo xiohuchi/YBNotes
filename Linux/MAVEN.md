@@ -1,4 +1,4 @@
-## 安装MAVEN
+## 安装Maven
 
 Maven的下载地址是：http://maven.apache.org/download.cgi
 
