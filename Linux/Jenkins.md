@@ -135,6 +135,17 @@ make
 make prefix=/usr/local install
 ```
 
+如果出现下面错误
+
+![1565700658882](assets/1565700658882.png)
+
+则运行
+
+```
+yum install -y gcc
+```
+
+
 
 查看git安装到什么地方
 
@@ -153,14 +164,59 @@ which git
 
 Path to Git executable：填写git的安装路径
 
+![1565701063055](assets/1565701063055.png)
+
 ### 5.java配置
 
 在服务器上执行echo $JAVA_HOME便可看到java home。 
 
+```
+[root@www /]# echo $JAVA_HOME
+/data/jdk/jdk1.8.0_221
+```
 
+![1565701194489](assets/1565701194489.png)
 
 ### 6.maven配置
 
-#### 安装
+在服务器上执行mvn -v便可看到Maven home
 
-下载
+```
+[root@www /]# mvn -v
+Apache Maven 3.6.1 (d66c9c0b3152b2e69ee9bac180bb8fcc8e6af555; 2019-04-05T03:00:29+08:00)
+Maven home: /data/maven/apache-maven-3.6.1
+```
+
+![1565701377483](assets/1565701377483.png)
+
+### 7.email配置
+
+配置邮箱，在构建失败的时候会向指定邮箱发送告知邮件。 
+
+　　首页》》系统管理》》系统配置，先设置一个系统管理员邮件地址，否则邮件功能会进行不了；
+
+![1565702044547](assets/1565702044547.png)
+
+![1565702033844](assets/1565702033844.png)
+
+### 8.构建配置
+
+![1565702137982](assets/1565702137982.png)
+
+![1565702420214](assets/1565702420214.png)
+
+![1565702572298](assets/1565702572298.png)
+
+Poll SCM：定时检查源码变更（根据SCM软件的版本号），如果有更新就checkout最新code下来，然后执行构建动作。我的配置如下：
+
+```
+*/5 * * * *  （每5分钟检查一次源码变化）
+```
+
+
+Build periodically：周期进行项目构建（它不管care源码是否发生变化），配置如下：
+
+```
+0 2 * * *  （每天2:00 必须build一次源码）
+```
+
