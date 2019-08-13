@@ -1,4 +1,4 @@
-# CentOS7安装JDK1.8
+# CentOS安装JDK
 
 ### 1.卸载
 
