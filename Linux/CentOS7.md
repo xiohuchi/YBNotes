@@ -198,7 +198,7 @@ NAT：NAT模式就是虚拟机要联网得先通过宿主机才能和外面进�
 
 就可以用xshell连接了
 
-## 三.桥接模式网络配置
+## 三.桥接模式网络配置(不需要)
 
 **1、配置ip地址等信息在/etc/sysconfig/network-scripts/ifcfg-ens33文件里做如下配置：**
 
@@ -233,7 +233,7 @@ ONBOOT=no
 在/etc/sysconfig/network文件里增加如下配置
 
 ```
-命令： vi /etc/sysconfig/network  
+命令： vi /etc/sysconfig/network
 修改： NETWORKING=yes # 网络是否工作，此处一定不能为no
 ```
 
