@@ -258,3 +258,6 @@ systemctl disable firewalld # 禁止开机启动
 service network restart
 ```
 
+### 三.界面打开网络(建议)
+
+![1565958349940](assets/1565958349940.png)
